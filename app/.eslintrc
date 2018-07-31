@@ -1,0 +1,20 @@
+{
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaVersion": 7,
+        "sourceType": "module"
+    },
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "globals": {
+        "logger": true
+    },
+    "rules": {
+        "no-console": 0,
+        "no-unused-vars": 1,
+        "require-yield": 0
+    }
+}

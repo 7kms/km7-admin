@@ -1,0 +1,12 @@
+### macOS ###
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+.vscode/
+.idea/
+
+*-error.log
+
+node_modules/
+__build__client__output__/
