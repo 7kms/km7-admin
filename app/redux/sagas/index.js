@@ -10,26 +10,22 @@ import { $get } from '~utils/api'
  */
 const fetchArticleWatcher = function*(){
     while(true){
-        const {params} = yield take(ArticleActionTypes.fetchArticleList)
+        const {params} = yield take(ArticleActionTypes.FETCH_ARTICLE_LIST)
         const {list} = yield call ($get,'/api/article', params);
         yield put({
             type: ArticleActionTypes.SET_ARTICLE_LIST,
-            pyload: {
-                list
-            }
+            pyload: list
         })
     }
 }
 
 const loginWatcher = function*(){
     while(true){
-        const {params} = yield take(UserActionTypes.LOGIN)
+        const {params} = yield take(UserActionTypes.USER_LOGIN)
         const {user} = yield call ($get,'/api/user/login', params);
         yield put({
             type: UserActionTypes.SET_PROFILE,
-            pyload: {
-                user
-            }
+            pyload: user
         })
     }
 }

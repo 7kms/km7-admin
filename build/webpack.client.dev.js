@@ -36,7 +36,8 @@ module.exports = merge({
     host: "0.0.0.0",
     publicPath: "/",
     after(){
-      console.log(arguments)
+      console.log(`webpack-dev-server is running at http://127.0.0.1:6900`)
+      // console.log(arguments)
     }
   },
   module:{

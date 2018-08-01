@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { API_TIMEOUT, SERVERURL} from '../config';
-import { isServer} from './index';
-let globalCookie = ''
+
 let generateUrl = (url) => {
-    return url 
+    return url
 }
 
 let headerConfig = ()=>{
@@ -66,19 +65,9 @@ const generateRequestObj = (method,url,paramsObj,cancelToken,noToken)=>{
 }
 
 export const $get = (url, paramsObj={}, cancelToken)=>{
-   if(isServer()){
-        return $getwithCustomCookie(url, paramsObj)
-   }
    let configObj = generateRequestObj('get',url,paramsObj,cancelToken);
    return $apiProcess(configObj)
 }
-
-export const $getwithCustomCookie = (url, paramsObj={}, cookie=globalCookie)=>{
-    let configObj = generateRequestObj('get',url,paramsObj);
-    configObj.headers.Cookie = cookie;
-    configObj.withCredentials =  true;
-    return $apiProcess(configObj)
- }
 
 export const $post = (url, paramsObj={}, cancelToken)=>{
     let configObj = generateRequestObj('post',url,paramsObj,cancelToken);
@@ -113,9 +102,4 @@ export const $postwithformdata= (url, paramsObj={})=>{
 export const $delete = (url, paramsObj={}, cancelToken)=>{
     let configObj = generateRequestObj('delete',url,paramsObj,cancelToken);
     return $apiProcess(configObj)
-}
-
-
-export const setInitialCookies = (cookies)=>{
-    globalCookie = cookies
 }

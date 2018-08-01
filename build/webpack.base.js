@@ -49,6 +49,42 @@ const config = {
                       name: pathConfig.generageStaticPath('[name].[ext]?v=[hash:6]'),
                     }
                   },
+                  {
+                    test: /.css$/,
+                    include: /node_modules/,
+                    // resourceQuery: 'inline',
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        require.resolve('css-loader')
+                    ]
+                  },
+                  {
+                    test: /.less$/,
+                    include: /node_modules/,
+                    // resourceQuery: 'inline',
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        require.resolve('css-loader'),
+                        {
+                          loader: require.resolve('postcss-loader'),
+                          options: {
+                            ident: 'postcss',
+                            plugins: () => [
+                              require('autoprefixer')({
+                                browsers: [
+                                  '>10%',
+                                  'last 2 versions',
+                                  'Firefox ESR',
+                                  'not ie < 9', // React doesn't support IE8 anyway
+                                ]
+                              })
+                            ]
+                          }
+                        },
+                        
+                        require.resolve('less-loader'),
+                    ]
+                  },
                   // Process JS with Babel.
                   {
                     test: /\.(js|jsx|mjs)$/,

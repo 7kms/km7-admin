@@ -62,6 +62,7 @@ const getLoaderRulesByType = (type)=>{
 const generateRuleModule = (type, isServerSide) => {
     const obj = {
         test: getRegularExpressionByType(type),
+        include: /app/,
         use : getLoaderRulesByType(type)
     }
     // if(isServerSide){

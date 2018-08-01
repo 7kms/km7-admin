@@ -1,12 +1,15 @@
-const {app, BrowserWindow} = require('electron')
 
 const path = require('path')
+const {app, BrowserWindow} = require('electron')
+const pathConfig = require('./build/pathConfig')
+
 
 const debug = /--debug/.test(process.argv[2])
 
 class Main {
   constructor(){
     this.mainWindow = null;
+    this.contentUrl = process.env.NODE_ENV === 'production' ? `file://${pathConfig.clientOutput}/index.html` : `http://127.0.0.1:6900`;
     this.init();
   }
   init(){
@@ -33,7 +36,7 @@ class Main {
       title: app.getName()
     }
     this.mainWindow = new BrowserWindow(windowOptions)
-    this.mainWindow.loadURL(path.join('file://', __dirname, '/index.html'))
+    this.mainWindow.loadURL(this.contentUrl)
 
     // Launch fullscreen with DevTools open, usage: npm run debug
     if (debug) {

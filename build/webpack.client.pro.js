@@ -11,7 +11,8 @@ const styleConfig = require('./styleConfig')
 module.exports = merge({
   name: 'client',
   mode: 'production',
-  devtool: 'source-map',
+  // devtool: 'source-map',
+  devtool: false,
   target: 'web',
   entry: {
     app: pathConfig.clientEntry
