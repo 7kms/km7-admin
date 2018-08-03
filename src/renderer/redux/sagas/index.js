@@ -3,12 +3,14 @@ import * as ArticleActionTypes from '~actions/article'
 import * as UserActionTypes from '~actions/user'
 import { put, all, call, fork, take} from 'redux-saga/effects'
 import { $get } from '~utils/api'
+import IPCManager from '../ipcrenderer'
+
 
 /**
  * 
  * watcher saga
  */
-const fetchArticleWatcher = function*(){
+const articleWatcher = function*(){
     while(true){
         const {params} = yield take(ArticleActionTypes.FETCH_ARTICLE_LIST)
         const {list} = yield call ($get,'/api/article', params);
@@ -19,20 +21,17 @@ const fetchArticleWatcher = function*(){
     }
 }
 
-const loginWatcher = function*(){
+const userWatcher = function*(){
     while(true){
-        const {params} = yield take(UserActionTypes.USER_LOGIN)
-        const {user} = yield call ($get,'/api/user/login', params);
-        yield put({
-            type: UserActionTypes.SET_PROFILE,
-            pyload: user
-        })
+        const msg = yield take(UserActionTypes.SET_PROFILE);
+        console.log(msg)
+        yield call (IPCManager.login);
     }
 }
 
 export default function* root() {
     yield all([
-        fork(fetchArticleWatcher),
-        fork(loginWatcher)
+        fork(articleWatcher),
+        fork(userWatcher)
     ])
 }

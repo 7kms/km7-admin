@@ -9,18 +9,19 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 // https://webpack.js.org/configuration/
 const config = {
+    target: 'electron-renderer',
     resolve:{
         extensions: [".js", ".json", ".jsx", ".ts"],
         alias: {
-            '~lib': resolve(__dirname, '../app/lib'),
-            '~less': resolve(__dirname, '../app/assets/less'),
-            '~utils': resolve(__dirname, '../app/utils'),
-            '~service': resolve(__dirname, '../app/service'),
-            '~config': resolve(__dirname, '../app/config'),
-            '~data': resolve(__dirname, '../app/data'),
-            '~actions': resolve(__dirname, '../app/redux/actions'),
-            '~components': resolve(__dirname, '../app/components'),
-            "~images": resolve(__dirname, '../app/assets/images')
+            '~lib': `${pathConfig.appSrc}/lib`,
+            '~utils': `${pathConfig.appSrc}/utils`,
+            '~service': `${pathConfig.appSrc}/service`,
+            '~config': `${pathConfig.appSrc}/config`,
+            '~data': `${pathConfig.appSrc}/data`,
+            '~actions': `${pathConfig.appSrc}/redux/actions`,
+            '~components': `${pathConfig.appSrc}/components`,
+            '~less': `${pathConfig.appSrc}/assets/less`,
+            "~images": `${pathConfig.appSrc}/assets/images`
           },
     },
     module:{

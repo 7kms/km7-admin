@@ -9,11 +9,9 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const styleConfig = require('./styleConfig')
 
 module.exports = merge({
-  name: 'client',
   mode: 'production',
   // devtool: 'source-map',
   devtool: false,
-  target: 'web',
   entry: {
     app: pathConfig.clientEntry
   },
@@ -21,7 +19,7 @@ module.exports = merge({
       path: pathConfig.clientOutput,
       filename: pathConfig.generageStaticPath('js/[name].[contenthash:6].js'),
       publicPath: pathConfig.publicPath,
-      libraryTarget: "umd"
+      libraryTarget: 'commonjs2'
   }, 
   // devServer: {
   //   compress: true, // enable gzip compression

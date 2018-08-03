@@ -8,5 +8,8 @@
     "dev": "webpack-dev-server --config ./build/webpack.client.dev.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "nconf": "^0.10.0"
+  }
 }

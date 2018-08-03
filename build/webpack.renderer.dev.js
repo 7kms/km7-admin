@@ -9,11 +9,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const CleanWebpackPlugin = require('clean-webpack-plugin');
 const styleConfig = require('./styleConfig')
 
-module.exports = merge({
-  name: 'client',
+module.exports = merge.smart({
   mode:  'development',
   devtool: 'source-map',
-  target: 'web',
   entry: {
       app: pathConfig.clientEntry
    },
@@ -21,7 +19,7 @@ module.exports = merge({
       path: pathConfig.clientOutput,
       filename: pathConfig.generageStaticPath('js/[name].js') ,
       publicPath: pathConfig.publicPath,
-      libraryTarget: "umd"
+      libraryTarget: 'umd'
   }, 
   devServer: {
     port: 6900,

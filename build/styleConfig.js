@@ -1,4 +1,5 @@
 // const styleLoaderRule = require.resolve('style-loader')
+const pathConfig = require('./pathConfig')
 const cssHotLoader = require.resolve('css-hot-loader')
 const lessLoaderRule = require.resolve('less-loader')
 // const isomorphicStyleLoader = require.resolve('isomorphic-style-loader')
@@ -62,7 +63,7 @@ const getLoaderRulesByType = (type)=>{
 const generateRuleModule = (type, isServerSide) => {
     const obj = {
         test: getRegularExpressionByType(type),
-        include: /app/,
+        include: /src/,
         use : getLoaderRulesByType(type)
     }
     // if(isServerSide){
