@@ -38,6 +38,7 @@ class NormalLoginForm extends React.PureComponent {
           loading: true
         })
         const {user} = await $post('/api/user/login',values)
+        console.log(user)
         this.props.setProfile(user)
         this.props.history.replace('/')
         message.success('login success');
@@ -51,6 +52,10 @@ class NormalLoginForm extends React.PureComponent {
         });
       }
     });
+  }
+
+  componentDidMount(){
+    
   }
   render() {
     const { getFieldDecorator } = this.props.form;

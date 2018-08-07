@@ -1,6 +1,7 @@
 export const USER_LOGIN = 'USER_LOGIN'
 export const GET_PROFILE = 'GET_USER_PROFILE'
 export const SET_PROFILE = 'SET_USER_PROFILE'
+export const CHANGE_STATUS = 'CHANGE_STATUS'
 
 export const login = (payload = {})=>{
     return {
@@ -10,7 +11,7 @@ export const login = (payload = {})=>{
 }
 
 
-export const profile = (payload = {})=>{
+export const getProfile = (payload = {})=>{
     return {
         type: GET_PROFILE,
         payload

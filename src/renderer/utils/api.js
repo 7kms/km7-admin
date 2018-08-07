@@ -49,7 +49,7 @@ export const createCancelTokenSource = ()=>{
     return CancelToken.source();
 }
 
-const generateRequestObj = (method,url,paramsObj,cancelToken,noToken)=>{
+const generateRequestObj = (method,url,paramsObj,cancelToken)=>{
     let obj = {
         method: method,
         url: generateUrl(url),
@@ -61,7 +61,7 @@ const generateRequestObj = (method,url,paramsObj,cancelToken,noToken)=>{
     }else{
         obj.data = paramsObj
     }
-    return Object.assign({},baseObj,obj,headerConfig(noToken))
+    return Object.assign({},baseObj,obj,headerConfig())
 }
 
 export const $get = (url, paramsObj={}, cancelToken)=>{

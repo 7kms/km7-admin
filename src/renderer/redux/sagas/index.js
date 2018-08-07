@@ -1,9 +1,28 @@
 // import { delay } from 'redux-saga'
 import * as ArticleActionTypes from '~actions/article'
 import * as UserActionTypes from '~actions/user'
-import { put, all, call, fork, take} from 'redux-saga/effects'
+import { put, all, call, fork, take, takeEvery} from 'redux-saga/effects'
 import { $get } from '~utils/api'
-import IPCManager from '../ipcrenderer'
+import IPCManager from '~ipc'
+
+
+const getProfile = function*(){
+    console.log('* getProfile')
+    const {user} = yield call ($get,'/api/user');
+    console.log('--------------',user)
+
+    if(user){
+        yield put({
+            type: UserActionTypes.SET_PROFILE,
+            payload:user
+        })
+    }else{
+        yield put({
+            type: UserActionTypes.CHANGE_STATUS,
+            payload: true
+        })
+    }
+}
 
 
 /**
@@ -16,17 +35,14 @@ const articleWatcher = function*(){
         const {list} = yield call ($get,'/api/article', params);
         yield put({
             type: ArticleActionTypes.SET_ARTICLE_LIST,
-            pyload: list
+            payload: list
         })
     }
 }
 
 const userWatcher = function*(){
-    while(true){
-        const msg = yield take(UserActionTypes.SET_PROFILE);
-        console.log(msg)
-        yield call (IPCManager.login);
-    }
+    yield takeEvery(UserActionTypes.GET_PROFILE,getProfile);
+    yield takeEvery(UserActionTypes.SET_PROFILE,IPCManager.login);
 }
 
 export default function* root() {

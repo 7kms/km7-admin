@@ -1,5 +1,5 @@
 
-const {app, ipcMain, BrowserWindow} = require('electron')
+const {app, ipcMain} = require('electron')
 const pathConfig = require('../../build/pathConfig')
 const AppConfig = require('./config')
 const MainWindow = require('./window/main')

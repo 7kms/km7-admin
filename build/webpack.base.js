@@ -21,7 +21,8 @@ const config = {
             '~actions': `${pathConfig.appSrc}/redux/actions`,
             '~components': `${pathConfig.appSrc}/components`,
             '~less': `${pathConfig.appSrc}/assets/less`,
-            "~images": `${pathConfig.appSrc}/assets/images`
+            '~images': `${pathConfig.appSrc}/assets/images`,
+            '~ipc': `${pathConfig.appSrc}/ipcrenderer`
           },
     },
     module:{
