@@ -6,7 +6,6 @@ import { Form, Icon, Input, Button, message , Modal} from 'antd';
 import { setProfile } from '~actions/user'
 
 import classNames from 'classnames/bind'
-
 import styles from '~less/login.less'
 let cx = classNames.bind(styles)
 
@@ -14,14 +13,37 @@ let cx = classNames.bind(styles)
 const FormItem = Form.Item;
 
 const Header = ()=>{
-  return <header className={cx('header')}>7km blog manager</header>
+  return <header className={cx('header')}>manager</header>
 }
 
 @connect(null,{setProfile})
 @Form.create()
 class NormalLoginForm extends React.PureComponent {
   state = {
-    loading: false
+    loading: false,
+    info:{}
+  }
+  login = async (values)=>{
+    values = values || this.state.info;
+    try{
+      this.setState({
+        loading: true
+      })
+      const {user} = await $post('/api/user/login',values)
+      window.$storage.setEncryptoJSON('ul', values)
+      this.props.setProfile(user)
+      this.props.history.replace('/')
+      message.success('login success');
+    }catch(e){
+      console.log(e)
+      this.setState({
+        loading: false
+      })
+      Modal.error({
+        title: 'Error',
+        content: e.result.msg,
+      });
+    }
   }
   handleSubmit = (e) => {
     let {loading} = this.state;
@@ -33,33 +55,18 @@ class NormalLoginForm extends React.PureComponent {
       if(err){
         return false;
       }
-      try{
-        this.setState({
-          loading: true
-        })
-        const {user} = await $post('/api/user/login',values)
-        console.log(user)
-        this.props.setProfile(user)
-        this.props.history.replace('/')
-        message.success('login success');
-      }catch(e){
-        this.setState({
-          loading: false
-        })
-        Modal.error({
-          title: 'Error',
-          content: e.result.msg,
-        });
-      }
+      this.login(values)
     });
   }
-
   componentDidMount(){
-    
+    let storeAccountInfo = window.$storage.getEncryptoJSON('ul');
+    this.setState({info: storeAccountInfo},()=>{
+      this.login()
+    })
   }
   render() {
     const { getFieldDecorator } = this.props.form;
-    const {loading} = this.state;
+    const {loading,info} = this.state;
     return (
       <div className={cx('login')}>
          <Header/>
@@ -67,7 +74,7 @@ class NormalLoginForm extends React.PureComponent {
           <FormItem>
             {getFieldDecorator('account', {
               rules: [{ required: true, message: 'Please input your account!' }],
-              initialValue: 'tlyspa@gmail.com'
+              initialValue: info.account
             })(
               <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Account" />
             )}
@@ -75,7 +82,7 @@ class NormalLoginForm extends React.PureComponent {
           <FormItem>
             {getFieldDecorator('password', {
               rules: [{ required: true, message: 'Please input your Password!' }],
-              initialValue: '111111'
+              initialValue: info.password
             })(
               <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
             )}

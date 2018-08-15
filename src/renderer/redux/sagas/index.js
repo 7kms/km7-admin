@@ -8,9 +8,14 @@ import IPCManager from '~ipc'
 
 const getProfile = function*(){
     console.log('* getProfile')
-    const {user} = yield call ($get,'/api/user');
+    let user = null;
+    try{
+      let res = yield call ($get,'/api/user/profile')
+      user = res.user;
+    }catch(e){
+        console.log(e)
+    }
     console.log('--------------',user)
-
     if(user){
         yield put({
             type: UserActionTypes.SET_PROFILE,

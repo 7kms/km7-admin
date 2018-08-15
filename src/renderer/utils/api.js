@@ -18,7 +18,7 @@ let CancelToken = axios.CancelToken;
 
 const baseObj = {
     timeout: API_TIMEOUT,
-    // withCredentials: true,
+    withCredentials: true,
     responseType: 'json'
 }
 

@@ -3,7 +3,6 @@
 const path = require('path')
 const pathConfig = require('./pathConfig')
 const isProduct = process.env.NODE_ENV === 'production'
-const resolve = path.resolve
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 
@@ -13,6 +12,7 @@ const config = {
     resolve:{
         extensions: [".js", ".json", ".jsx", ".ts"],
         alias: {
+            '~src': pathConfig.src,
             '~lib': `${pathConfig.appSrc}/lib`,
             '~utils': `${pathConfig.appSrc}/utils`,
             '~service': `${pathConfig.appSrc}/service`,
@@ -118,6 +118,7 @@ const config = {
               }
         ]
     },
+    externals:['crypto-js','nconf'],
     plugins: [
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output

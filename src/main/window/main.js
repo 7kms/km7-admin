@@ -2,7 +2,7 @@
 'use strict';
 const path = require('path')
 const AppConfig = require('../config');
-const { BrowserWindow, session } = require('electron');
+const { BrowserWindow, session,app } = require('electron');
 class MainWindow {
   constructor() {
     this.isShown = false;
@@ -13,8 +13,20 @@ class MainWindow {
   resizeWindow(isLogged) {
     console.log('resizeWindow')
     // const size = isLogged ? AppConfig.WINDOW_SIZE : AppConfig.WINDOW_SIZE_LOGIN;
-    // // this._window.setResizable(isLogged);
+    // this._window.setResizable(isLogged);
     // this._window.setSize(size.width, size.height);
+    // if(isLogged){
+    //     this._window.webContents.session.cookies.set({
+    //       url:'http://test.7km.top',
+    //       name: 'connect.sid',
+    //       value: 's%3AFv_7CiYR_cKJro2DR4WZBGZQjOKER8Iq.YVrHWSd0crs3kxoVIEx36BCVFzC0juParGiabzEXoK0'}, (error, cookies) => {
+    //       if(error){
+    //         console.log(error)
+    //       }else{
+    //         console.log('cookies',cookies)
+    //       }
+    //     })
+    // }
     this.show();
     this._window.center();
   }
@@ -36,7 +48,7 @@ class MainWindow {
         // javascript: true,
         // plugins: true,
         // nodeIntegration: false,
-        // preload: path.join(__dirname, '../inject'),
+        preload: path.join(__dirname, '../inject/preload'),
       }
     });
   }
@@ -74,22 +86,23 @@ class MainWindow {
 
   initWindowWebContent() {
     this.loadURL();
-
-    this._window.webContents.on('will-navigate', (ev, url) => {
+    let webContents =  this._window.webContents;
+    webContents.on('will-navigate', (ev, url) => {
         console.log('main-window will-navigate')
     });
 
-    this._window.webContents.on('dom-ready', () => {
+    webContents.on('dom-ready', () => {
         console.log('main-window dom-ready')
     });
 
-    this._window.webContents.on('new-window', (event, url) => {
+    webContents.on('new-window', (event, url) => {
         console.log('main-window new-window')
     });
 
-    this._window.webContents.on('will-navigate', (event, url) => {
+    webContents.on('will-navigate', (event, url) => {
       console.log('main-window will-change')
     });
+    
   }
 }
 

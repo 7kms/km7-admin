@@ -5,6 +5,7 @@ const resolve = (url)=>{
 }
 const appSrc = resolve('../src/renderer');
 module.exports = {
+    src: resolve('../src'),
     appSrc,
     publicPath: './',
     clientOutput: resolve('../__build__client__output__'),
