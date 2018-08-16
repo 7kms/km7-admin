@@ -1,11 +1,26 @@
 @import "./const.less";
 
-
 .wrap{
-    padding: 1rem;
+    background-color: #fff;
+    flex: 1;
+    padding: 5*@px;
 }
-.item{
-    &:hover{
-        background-color: #fafafa;
-    }
+
+.article-item{
+    padding:5*@px; 
+    border-bottom: 1px solid #ccc;
+}
+.dfn{
+    font-weight: bold;
+    color: @theme-color;
+}
+.dfn-item{
+    display: flex;
+    align-items: center;
+    min-height: 40*@px;
+}
+.dfn-label{
+    display: inline-block;
+    width: 100*@px;
+    margin-right: 10*@px;
 }

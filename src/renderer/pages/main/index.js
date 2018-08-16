@@ -6,7 +6,7 @@ import {fetchArticleList} from '~actions/article'
 import {connect} from 'react-redux'
 import {$get} from '~utils/api'
 import {Button,List,Tag} from 'antd'
-import ArticleEditPage from '../article'
+import ArticlePage from '../article'
 import CategoryPage from '../category'
 
 import classNames from 'classnames/bind'
@@ -19,9 +19,7 @@ class Main extends PureComponent{
     constructor(){
         super();
         this.state = {
-            params:{
-
-            },
+            params:{},
             nav: [],
             category: {},
             list: []
@@ -93,7 +91,7 @@ export default class Page extends PureComponent{
             <PageLayout>
                 <Switch>
                     <Route path="/" component={Main} exact/>
-                    <Route path="/article/:id?" component={ArticleEditPage} exact/>
+                    <Route path="/article/:id?" component={ArticlePage} exact/>
                     <Route path="/category" component={CategoryPage} exact/>
                 </Switch>
             </PageLayout>

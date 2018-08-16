@@ -63,12 +63,10 @@ class Page extends PureComponent{
           </Menu>
         </Sider>
         <Layout>
-          <Header style={{ background: '#fff', padding: 0 }} />
-          <Content style={{ margin: '0 16px' }}>
-            {this.props.children}
-          </Content>
-          <Footer style={{ textAlign: 'center' }}>
-            Ant Design ©2018 Created by Ant UED
+          <Header />
+          <Content className="km7-main-wrap">{this.props.children}</Content>
+          <Footer className="text-center">
+            KM7 ©2018 Created by 7km
           </Footer>
         </Layout>
       </Layout>
