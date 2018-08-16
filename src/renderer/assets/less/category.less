@@ -1,0 +1,49 @@
+@import "./const.less";
+
+.wrap{
+    background-color: #fff;
+    padding: 5*@px;
+    min-height: 400*@px;
+    height: 100%;
+}
+.left,.right{
+    display: flex;
+    flex-direction: column;
+}
+.left{
+    flex: 0 0 180*@px;
+}
+.right{
+    padding-top: 5*@px;
+    padding-left: 5*@px;
+    background-color: #fafafa;
+    flex: 1;
+}
+.tab-list,.tag-list{
+    flex: 1;
+}
+.tab{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10*@px;
+    border-radius: 4*@px;
+    .tab-name{
+        flex: 1;
+    }
+    &.active{
+        background-color: @theme-color;
+        color: #fff;
+    }
+}
+.icon{
+    margin-left: 10*@px;
+    cursor: pointer;
+}
+.tag{
+    margin-right: 10*@px;
+    margin-bottom: 5*@px;
+}
+.tag-add{
+    align-self: flex-end;
+}

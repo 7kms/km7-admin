@@ -27,7 +27,7 @@ class MainWindow {
     //       }
     //     })
     // }
-    this.show();
+    // this.show();
     this._window.center();
   }
 
@@ -73,7 +73,7 @@ class MainWindow {
     //   console.log(cookies);
     // });
     this._window.show();
-    this._window.focus();
+    // this._window.focus();
     this._window.webContents.send('show-window');
     this.isShown = true;
   }

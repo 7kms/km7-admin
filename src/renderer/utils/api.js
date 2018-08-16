@@ -32,13 +32,17 @@ const errorProcess = (error)=>{
         // console.log(error.response.headers);
         return Promise.reject(error.response.data)
       } else {
-        return Promise.reject(error.message)
+        return Promise.reject(error)
       }
    
 }
 
 const successProcess = (res)=>{
-    return Promise.resolve(res.data.result)
+    let data = res.data;
+    if(data.status != 200){
+        return Promise.reject(data.result)
+    }
+    return Promise.resolve(data.result)
 }
 
 const $apiProcess = (httpConfig)=>{

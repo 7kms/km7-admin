@@ -1,7 +1,7 @@
 import React,{PureComponent} from 'react'
 import {Switch, Route} from 'react-router-dom'
 import $private from '~service/private'
-import PageLayout from './layout'
+import PageLayout from '../layout'
 import {fetchArticleList} from '~actions/article'
 import {connect} from 'react-redux'
 import {$get} from '~utils/api'

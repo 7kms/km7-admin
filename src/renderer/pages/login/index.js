@@ -41,7 +41,7 @@ class NormalLoginForm extends React.PureComponent {
       })
       Modal.error({
         title: 'Error',
-        content: e.result.msg,
+        content: JSON.stringify(e),
       });
     }
   }

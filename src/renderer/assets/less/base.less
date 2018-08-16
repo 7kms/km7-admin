@@ -1,7 +1,65 @@
 @import "./const.less";
 
-:global{
+html{
+    font-size: @base-size;
+}
+html,body,div,h1,h2,h3,h4,h5,h6,header,article,nav,ul,li,table,tr,td,th,tbody,span,p,a,b,strong,input,textarea,form,input{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+p, article, article table, h1, h2, h3, h4, h5, h6 {
+    color: #464646;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1em;
+    font-weight: 600;
+    color: #4e4e4e;
+    word-wrap: break-word;
+    margin: 10px 0
+}
+body{
+    overflow: auto;
+    min-width: 320*@px;
+    font-family: robote, helvetica, arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+ul,li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+input,textarea{
+    outline: none;
+    border: none;
+}
 
+
+
+// .ndog-sider{
+//     background-color: #fff !important;
+//     .ant-layout-sider-trigger{
+//         background-color: @theme-color;
+//     }
+// }
+
+:global{
+    .fl{
+        float: left;
+    }
+    .fr{
+        float: right;
+    }
+    .relative{
+        position: relative;
+    }
+    .text-center{
+        text-align: center;
+    }
+    .flex{
+        display: flex;
+    }
     .flex-center{
         display: flex;
         align-items: center;

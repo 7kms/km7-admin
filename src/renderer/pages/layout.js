@@ -37,6 +37,7 @@ class Page extends PureComponent{
           collapsible
           collapsed={this.state.collapsed}
           onCollapse={this.onCollapse}
+          breakpoint="sm"
         >
           <div className="logo" />
           <Menu 
